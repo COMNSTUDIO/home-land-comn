@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link href="https://fonts.googleapis.com/css2?family=Sofia+Sans+Extra+Condensed:ital,wght@0,1..1000;1,1..1000&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: black;
+      color: white;
+      font-family: 'Sofia Sans Extra Condensed', serif;
+      user-select: none;
+    }
+
+    .container {
+      text-align: center;
+      position: relative;
+      max-width: 800px;
+      width: 100%;
+    }
+
+    .text-container {
+      position: relative;
+      font-size: 48px;
+      letter-spacing: 2px;
+    }
+
+    #text-dark {
+      color: black;
+      position: relative;
+      z-index: 1;
+    }
+
+    #text-light {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      color: white;
+      z-index: 2;
+      -webkit-mask-image: linear-gradient(
+        to right,
+        transparent,
+        transparent calc(var(--dot-position) - 60px),
+        rgba(0, 0, 0, 0.1) calc(var(--dot-position) - 55px),
+        rgba(0, 0, 0, 0.2) calc(var(--dot-position) - 50px),
+        rgba(0, 0, 0, 0.3) calc(var(--dot-position) - 45px),
+        rgba(0, 0, 0, 0.4) calc(var(--dot-position) - 40px),
+        rgba(0, 0, 0, 0.5) calc(var(--dot-position) - 35px),
+        rgba(0, 0, 0, 0.6) calc(var(--dot-position) - 30px),
+        rgba(0, 0, 0, 0.7) calc(var(--dot-position) - 25px),
+        rgba(0, 0, 0, 0.8) calc(var(--dot-position) - 20px),
+        rgba(0, 0, 0, 0.9) calc(var(--dot-position) - 15px),
+        black calc(var(--dot-position) - 10px),
+        black var(--dot-position),
+        black calc(var(--dot-position) + 10px),
+        rgba(0, 0, 0, 0.9) calc(var(--dot-position) + 15px),
+        rgba(0, 0, 0, 0.8) calc(var(--dot-position) + 20px),
+        rgba(0, 0, 0, 0.7) calc(var(--dot-position) + 25px),
+        rgba(0, 0, 0, 0.6) calc(var(--dot-position) + 30px),
+        rgba(0, 0, 0, 0.5) calc(var(--dot-position) + 35px),
+        rgba(0, 0, 0, 0.4) calc(var(--dot-position) + 40px),
+        rgba(0, 0, 0, 0.3) calc(var(--dot-position) + 45px),
+        rgba(0, 0, 0, 0.2) calc(var(--dot-position) + 50px),
+        rgba(0, 0, 0, 0.1) calc(var(--dot-position) + 55px),
+        transparent calc(var(--dot-position) + 60px),
+        transparent
+      );
+      mask-image: linear-gradient(
+        to right,
+        transparent,
+        transparent calc(var(--dot-position) - 60px),
+        rgba(0, 0, 0, 0.1) calc(var(--dot-position) - 55px),
+        rgba(0, 0, 0, 0.2) calc(var(--dot-position) - 50px),
+        rgba(0, 0, 0, 0.3) calc(var(--dot-position) - 45px),
+        rgba(0, 0, 0, 0.4) calc(var(--dot-position) - 40px),
+        rgba(0, 0, 0, 0.5) calc(var(--dot-position) - 35px),
+        rgba(0, 0, 0, 0.6) calc(var(--dot-position) - 30px),
+        rgba(0, 0, 0, 0.7) calc(var(--dot-position) - 25px),
+        rgba(0, 0, 0, 0.8) calc(var(--dot-position) - 20px),
+        rgba(0, 0, 0, 0.9) calc(var(--dot-position) - 15px),
+        black calc(var(--dot-position) - 10px),
+        black var(--dot-position),
+        black calc(var(--dot-position) + 10px),
+        rgba(0, 0, 0, 0.9) calc(var(--dot-position) + 15px),
+        rgba(0, 0, 0, 0.8) calc(var(--dot-position) + 20px),
+        rgba(0, 0, 0, 0.7) calc(var(--dot-position) + 25px),
+        rgba(0, 0, 0, 0.6) calc(var(--dot-position) + 30px),
+        rgba(0, 0, 0, 0.5) calc(var(--dot-position) + 35px),
+        rgba(0, 0, 0, 0.4) calc(var(--dot-position) + 40px),
+        rgba(0, 0, 0, 0.3) calc(var(--dot-position) + 45px),
+        rgba(0, 0, 0, 0.2) calc(var(--dot-position) + 50px),
+        rgba(0, 0, 0, 0.1) calc(var(--dot-position) + 55px),
+        transparent calc(var(--dot-position) + 60px),
+        transparent
+      );
+    }
+
+    .dot-container {
+      position: relative;
+      margin-top: 20px;
+      height: 8px;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    .dot {
+      width: 0;
+      height: 0;
+      border-left: 6px solid transparent;
+      border-right: 6px solid transparent;
+      border-bottom: 10px solid white;
+      position: absolute;
+      top: -5px;
+      animation: slideDot 6s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+      filter: drop-shadow(0 0 5px white);
+    }
+
+    @keyframes slideDot {
+      0% { left: 15%; }
+      50% { left: calc(80% - 12px); }
+      100% { left: 15%; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="text-container">
+      <div id="text-dark">COMN STUDIO</div>
+      <div id="text-light">COMN STUDIO</div>
+    </div>
+    <div class="dot-container">
+      <div class="dot"></div>
+    </div>
+  </div>
+
+  <script>
+    const textDark = document.getElementById('text-dark');
+    const textLight = document.getElementById('text-light');
+    const messages = ['COMN STUDIO', 'LAUNCHING 2025'];
+    let currentIndex = 0;
+    
+    function updateTexts(newText) {
+      textDark.textContent = newText;
+      textLight.textContent = newText;
+    }
+
+    setInterval(() => {
+      textDark.style.opacity = 0;
+      textLight.style.opacity = 0;
+      
+      setTimeout(() => {
+        currentIndex = (currentIndex + 1) % messages.length;
+        updateTexts(messages[currentIndex]);
+        textDark.style.opacity = 1;
+        textLight.style.opacity = 1;
+      }, 500);
+      
+    }, 3000);
+
+    textDark.style.transition = 'opacity 0.5s ease';
+    textLight.style.transition = 'opacity 0.5s ease';
+
+    function updateLightPosition() {
+      const dot = document.querySelector('.dot');
+      const rect = dot.getBoundingClientRect();
+      const container = document.querySelector('.text-container');
+      const containerRect = container.getBoundingClientRect();
+      
+      const position = ((rect.left + rect.width/2) - containerRect.left) / containerRect.width * 100;
+      document.documentElement.style.setProperty('--dot-position', position + '%');
+      
+      requestAnimationFrame(updateLightPosition);
+    }
+
+    updateLightPosition();
+  </script>
+</body>
+</html>
